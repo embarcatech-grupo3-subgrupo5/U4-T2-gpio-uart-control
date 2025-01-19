@@ -1,0 +1,28 @@
+{
+    "version": 1,
+    "author": "Emyle Silva",
+    "editor": "wokwi",
+    "parts": [
+      {
+        "type": "board-pi-pico-w",
+        "id": "pico",
+        "top": 0,
+        "left": 0,
+        "attrs": { "builder": "pico-sdk" }
+      },
+      {
+        "type": "wokwi-buzzer",
+        "id": "bz1",
+        "top": -7.2,
+        "left": 136.2,
+        "attrs": { "volume": "0.1" }
+      }
+    ],
+    "connections": [
+      [ "pico:GP0", "$serialMonitor:RX", "", [] ],
+      [ "pico:GP1", "$serialMonitor:TX", "", [] ],
+      [ "pico:GP21", "bz1:2", "green", [ "h0" ] ],
+      [ "bz1:1", "pico:GND.6", "green", [ "v0" ] ]
+    ],
+    "dependencies": {}
+  }
