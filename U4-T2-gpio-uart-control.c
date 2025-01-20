@@ -27,6 +27,17 @@ void aciona_buzzer(){
     sleep_ms(3000);
 }
 
+// Função para ativar o buzzer com uma frequência específica e duração
+void activate_buzzer_com_frequencia(int frequencia, int duracao_ms) {
+    int intervalo = 1000 / frequencia; // Calcula o intervalo de tempo entre os "bips"
+    for (int i = 0; i < duracao_ms / intervalo; i++) {
+        gpio_put(BUZZER, true);
+        sleep_ms(intervalo / 2); // Meio do intervalo
+        gpio_put(BUZZER, false);
+        sleep_ms(intervalo / 2); // Meio do intervalo
+    }
+}
+
 // Função para processar comandos UART
 void processar_comandos(char comando) {
     switch (comando) {
@@ -42,16 +53,23 @@ void processar_comandos(char comando) {
             ligar_led(LED_VERMELHO);
             printf("LED vermelho ligado.\n");
             break;
-        /*TODO - Funções 4 ao 8 - (Os proximos cases devem chamar)
-        
-        - Função para ligar todos os LEDs
-        - Função para desligar todos os LEDs
-        - Função para acionar o buzzer
-        - Função para acionar o buzzer com frequência
-        - Função para habilitar o modo de gravacao [A funcao é (reset_usb_boot(0, 0);]
-)
-        - Default case
-        */
+        case '4': // Ligar todos os LEDs
+            ligar_todos();
+            break;
+        case '5': // Desligar todos os LEDs
+            desligar_todos();
+            break;
+        case '6': // Acionar buzzer por 3 segundos
+            aciona_buzzer();
+        case '7': // Acionar buzzer com frequência
+            activate_buzzer_com_frequencia(2, 3000); // Frequência de 2 Hz por 3 segundos
+            break;
+        case '8': // Habilitar modo de gravação
+            reset_usb_boot(0, 0);
+            break;
+        default:
+            printf("Comando desconhecido.\n");
+            break;
     }
 }
 
