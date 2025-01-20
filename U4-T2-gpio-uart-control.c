@@ -38,6 +38,22 @@ void activate_buzzer_com_frequencia(int frequencia, int duracao_ms) {
     }
 }
 
+// Função para desligar todos os LEDs
+void desligar_todos() {
+    gpio_put(LED_VERDE, false);
+    gpio_put(LED_AZUL, false);
+    gpio_put(LED_VERMELHO, false);
+    printf("Todos os LEDs desligados.\n");
+}
+
+// Função para ligar todos os LEDs
+void ligar_todos() {
+    gpio_put(LED_VERDE, true);
+    gpio_put(LED_AZUL, true);
+    gpio_put(LED_VERMELHO, true);
+    printf("Todos os LEDs ligados.\n");
+}
+
 // Função para processar comandos UART
 void processar_comandos(char comando) {
     switch (comando) {
