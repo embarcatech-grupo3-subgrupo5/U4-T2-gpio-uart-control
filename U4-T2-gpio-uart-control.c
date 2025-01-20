@@ -21,7 +21,7 @@ void processar_comandos(char comando); //OK - GEISON - TODO - GABRIELLA
 // Desenvolvido por Geison
 // Função para ligar um LED específico
 void ligar_led(uint led_pin) {
-    desligar_todos();
+    desligar_todos_leds();
     gpio_put(led_pin, 1);
 }
 
@@ -32,33 +32,6 @@ void aciona_buzzer(){
     sleep_ms(3000);
     gpio_put(BUZZER, false);
     sleep_ms(3000);
-}
-
-// Função para ativar o buzzer com uma frequência específica e duração
-void activate_buzzer_com_frequencia(int frequencia, int duracao_ms) {
-    int intervalo = 1000 / frequencia; // Calcula o intervalo de tempo entre os "bips"
-    for (int i = 0; i < duracao_ms / intervalo; i++) {
-        gpio_put(BUZZER, true);
-        sleep_ms(intervalo / 2); // Meio do intervalo
-        gpio_put(BUZZER, false);
-        sleep_ms(intervalo / 2); // Meio do intervalo
-    }
-}
-
-// Função para desligar todos os LEDs
-void desligar_todos() {
-    gpio_put(LED_VERDE, false);
-    gpio_put(LED_AZUL, false);
-    gpio_put(LED_VERMELHO, false);
-    printf("Todos os LEDs desligados.\n");
-}
-
-// Função para ligar todos os LEDs
-void ligar_todos() {
-    gpio_put(LED_VERDE, true);
-    gpio_put(LED_AZUL, true);
-    gpio_put(LED_VERMELHO, true);
-    printf("Todos os LEDs ligados.\n");
 }
 
 // Função para processar comandos UART
@@ -76,23 +49,6 @@ void processar_comandos(char comando) {
         case '3': // Ligar LED vermelho
             ligar_led(LED_VERMELHO);
             printf("LED vermelho ligado.\n");
-            break;
-        case '4': // Ligar todos os LEDs
-            ligar_todos();
-            break;
-        case '5': // Desligar todos os LEDs
-            desligar_todos();
-            break;
-        case '6': // Acionar buzzer por 3 segundos
-            aciona_buzzer();
-        case '7': // Acionar buzzer com frequência
-            activate_buzzer_com_frequencia(2, 3000); // Frequência de 2 Hz por 3 segundos
-            break;
-        case '8': // Habilitar modo de gravação
-            reset_usb_boot(0, 0);
-            break;
-        default:
-            printf("Comando desconhecido.\n");
             break;
     }
 }
