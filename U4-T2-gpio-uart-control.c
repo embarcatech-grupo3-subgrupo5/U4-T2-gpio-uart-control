@@ -10,15 +10,22 @@
 #define BUZZER 21
 
 // Declaração de funções
-void configurar();
-void desligar_todos();
-void ligar_led(uint led_pin);
-void ligar_branco();
+void configurar_leds(); //Configuracao inicial dos GPIOS - TODO - JULIERME E MARIO
+void desligar_todos_leds(); // TODO - JULIERME E MARIO
+void ligar_led(uint led_pin); //OK - GEISON
+void ligar_branco(); //TODO - JULIERME E MARIO
 void aciona_buzzer(); //OK! - Emyle
-void activate_buzzer_com_frequencia(int frequencia, int duracao_ms);
-void processar_comandos(char comando);
+void activate_buzzer_com_frequencia(int frequencia, int duracao_ms); //TODO - ALEXANDRE
+void processar_comandos(char comando); //OK - GEISON - TODO - GABRIELLA
 
-//Desenvolvido por Emyle
+// Desenvolvido por Geison
+// Função para ligar um LED específico
+void ligar_led(uint led_pin) {
+    desligar_todos();
+    gpio_put(led_pin, 1);
+}
+
+// Desenvolvido por Emyle
 // Função para acionar o buzzer por 3 segundos
 void aciona_buzzer(){
     gpio_put(BUZZER, true);
@@ -55,6 +62,7 @@ void ligar_todos() {
 }
 
 // Função para processar comandos UART
+// Desenvolvido por Gabriella e Geison
 void processar_comandos(char comando) {
     switch (comando) {
         case '1': // Ligar LED verde
