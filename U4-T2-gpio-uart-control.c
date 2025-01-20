@@ -42,7 +42,7 @@ void processar_comandos(char comando) {
             ligar_led(LED_VERMELHO);
             printf("LED vermelho ligado.\n");
             break;
-        /*TODO - Funções 4 ao 7 - (Os proximos cases devem chamar)
+        /*TODO - Funções 4 ao 8 - (Os proximos cases devem chamar)
         
         - Função para ligar todos os LEDs
         - Função para desligar todos os LEDs
