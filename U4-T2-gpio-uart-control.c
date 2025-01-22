@@ -25,6 +25,27 @@ void ligar_led(uint led_pin) {
     gpio_put(led_pin, 1);
 }
 
+// Desenvolvido por Julierme
+// Configuração inicial dos GPIOs
+void configurar_leds() {
+    gpio_init(LED_VERDE);
+    gpio_set_dir(LED_VERDE, GPIO_OUT);
+    gpio_init(LED_AZUL);
+    gpio_set_dir(LED_AZUL, GPIO_OUT);
+    gpio_init(LED_VERMELHO);
+    gpio_set_dir(LED_VERMELHO, GPIO_OUT);
+    gpio_init(BUZZER);
+    gpio_set_dir(BUZZER, GPIO_OUT);
+}
+
+// Desenvolvido por Julierme
+// Função para desligar todos os LEDs
+void desligar_todos_leds() {
+    gpio_put(LED_VERDE, 0);
+    gpio_put(LED_AZUL, 0);
+    gpio_put(LED_VERMELHO, 0);
+}
+
 // Desenvolvido por Emyle
 // Função para acionar o buzzer por 3 segundos
 void acionar_buzzer(){
