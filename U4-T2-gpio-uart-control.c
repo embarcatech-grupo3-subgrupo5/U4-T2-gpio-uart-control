@@ -11,13 +11,12 @@
 
 // Declaração de funções
 void configurar_leds(); //Configuracao inicial dos GPIOS - TODO - JULIERME E MARIO
-void ligar_todos_leds(); // GABRIELLA
+void ligar_todos_leds(); //OK - GABRIELLA
 void desligar_todos_leds(); // TODO - JULIERME E MARIO
 void ligar_led(uint led_pin); //OK - GEISON
-void ligar_branco(); //TODO - JULIERME E MARIO
 void acionar_buzzer(); //OK! - Emyle
-void acionar_buzzer_com_frequencia(int frequencia, int duracao_ms); //TODO - ALEXANDRE
-void processar_comandos(char comando); //OK - GEISON - TODO - GABRIELLA
+void acionar_buzzer_com_frequencia(int frequencia, int duracao_ms); //OK - GEISON
+void processar_comandos(char comando); //OK - GEISON - GABRIELLA
 
 // Desenvolvido por Geison
 // Função para ligar um LED específico
@@ -44,6 +43,18 @@ void ligar_todos_leds() {
     printf("Todos os LEDs ligados.\n");
 }
 
+// Desenvolvido por Geison
+// Função para acionar o buzzer com uma frequência específica
+void acionar_buzzer_com_frequencia(int frequencia, int duracao_ms) {
+    int atraso = 1000000 / (2 * frequencia); // Meio-período em microsegundos
+    for (int i = 0; i < (duracao_ms * 1000) / (2 * atraso); i++) {
+        gpio_put(BUZZER, 1);
+        sleep_us(atraso);
+        gpio_put(BUZZER, 0);
+        sleep_us(atraso);
+    }
+}
+
 // Função para processar comandos UART
 // Desenvolvido por Gabriella e Geison
 void processar_comandos(char comando) {
@@ -62,20 +73,26 @@ void processar_comandos(char comando) {
             break;
         case '4': // Ligar todos os LEDs
             ligar_todos_leds();
+            printf("Todos os LEDs ligados.\n");
             break;
         case '5': // Desligar todos os LEDs
             desligar_todos_leds();
+            printf("Todos os LEDs desligados.\n");
             break;
         case '6': // Acionar buzzer por 3 segundos
             acionar_buzzer();
+            printf("Buzzer acionado por 3 segundos.\n");
+            break;
         case '7': // Acionar buzzer com frequência
             acionar_buzzer_com_frequencia(2, 3000); // Frequência de 2 Hz por 3 segundos
+            printf("Buzzer acionado com frequência de 2 Hz por 3 segundos.\n");
             break;
         case '8': // Habilitar modo de gravação
             reset_usb_boot(0, 0);
+            printf("Modo de gravação habilitado.\n");
             break;
         default:
-            printf("Comando desconhecido.\n");
+            printf("Comando desconhecido. Tente novamente.\n");
             break;
     }
 }
