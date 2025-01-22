@@ -10,9 +10,9 @@
 #define BUZZER 21
 
 // Declaração de funções
-void configurar_leds(); //Configuracao inicial dos GPIOS - TODO - JULIERME E MARIO
-void ligar_todos_leds(); //OK - GABRIELLA
-void desligar_todos_leds(); // TODO - JULIERME E MARIO
+void configurar_leds(); // OK - JULIERME
+void ligar_todos_leds(); // OK - GABRIELLA
+void desligar_todos_leds(); // OK - JULIERME
 void ligar_led(uint led_pin); //OK - GEISON
 void acionar_buzzer(); //OK! - Emyle
 void acionar_buzzer_com_frequencia(int frequencia, int duracao_ms); //OK - GEISON
@@ -118,13 +118,16 @@ void processar_comandos(char comando) {
     }
 }
 
-int main()
-{
+int main() {
     stdio_init_all();
-    gpio_init(BUZZER);
-    gpio_set_dir(BUZZER, GPIO_OUT);
+    configurar_leds();
 
     while (true) {
-        acionar_buzzer();
+        char comando;
+        printf("Digite um comando (1-7): ");
+        comando = getchar(); // Recebe comando via UART
+        processar_comandos(comando); // Processa o comando recebido
     }
+
+    return 0;
 }
