@@ -124,7 +124,7 @@ int main() {
 
     while (true) {
         char comando;
-        printf("Digite um comando (1-7): ");
+        printf("Digite um comando (1-8): ");
         comando = getchar(); // Recebe comando via UART
         processar_comandos(comando); // Processa o comando recebido
     }
