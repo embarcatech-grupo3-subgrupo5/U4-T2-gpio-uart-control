@@ -9,6 +9,9 @@
 #define LED_VERMELHO 13
 #define BUZZER 21
 
+#define BUZZER_FREQ_HZ 3200
+
+
 // Declaração de funções
 void configurar_leds(); // OK - JULIERME
 void ligar_todos_leds(); // OK - GABRIELLA
@@ -55,6 +58,34 @@ void acionar_buzzer(){
     sleep_ms(3000);
 }
 
+// Desenvolvido por Geison
+// Função para acionar o buzzer por uma duração específica com base no funcionamento de um buzzer passivo,
+// como é o caso do buzzer utilizado na placa bitdoglab e no simulador wokwi
+// Função para acionar um buzzer passivo com uma frequência fixa e uma duração específica
+void acionar_buzzer2(uint32_t duracao_ms) {
+    // Calcula o período de uma onda em microssegundos, baseado na frequência do buzzer
+    uint32_t periodo = 1000000 / BUZZER_FREQ_HZ; // 1.000.000 us (1 segundo) dividido pela frequência
+    uint32_t meio_periodo = periodo / 2;         // Meio período para alternar o estado do buzzer
+
+    // Calcula o tempo final em microssegundos (tempo atual + duração desejada em microssegundos)
+    uint32_t tempo_final = time_us_32() + (duracao_ms * 1000);
+
+    // Configura o pino do buzzer como saída
+    gpio_set_dir(BUZZER, GPIO_OUT);
+
+    // Enquanto o tempo atual for menor que o tempo final
+    while (time_us_32() < tempo_final) {
+        gpio_put(BUZZER, 1);          // Liga o buzzer
+        sleep_us(meio_periodo);       // Aguarda por meio período
+        gpio_put(BUZZER, 0);          // Desliga o buzzer
+        sleep_us(meio_periodo);       // Aguarda por meio período
+    }
+
+    // Garante que o buzzer estará desligado ao final da execução
+    gpio_put(BUZZER, 0);
+}
+
+
 // Desenvolvido por Gabriella
 // Função para ligar todos os LEDs
 void ligar_todos_leds() {
@@ -62,18 +93,6 @@ void ligar_todos_leds() {
     gpio_put(LED_AZUL, true);
     gpio_put(LED_VERMELHO, true);
     printf("Todos os LEDs ligados.\n");
-}
-
-// Desenvolvido por Geison
-// Função para acionar o buzzer com uma frequência específica
-void acionar_buzzer_com_frequencia(int frequencia, int duracao_ms) {
-    int atraso = 1000000 / (2 * frequencia); // Meio-período em microsegundos
-    for (int i = 0; i < (duracao_ms * 1000) / (2 * atraso); i++) {
-        gpio_put(BUZZER, 1);
-        sleep_us(atraso);
-        gpio_put(BUZZER, 0);
-        sleep_us(atraso);
-    }
 }
 
 // Função para processar comandos UART
@@ -100,15 +119,11 @@ void processar_comandos(char comando) {
             desligar_todos_leds();
             printf("Todos os LEDs desligados.\n");
             break;
-        case '6': // Acionar buzzer por 3 segundos
-            acionar_buzzer();
-            printf("Buzzer acionado por 3 segundos.\n");
+        case '6': // Acionar buzzer por 2 segundos
+            acionar_buzzer2(2000);
+            printf("Buzzer acionado por 2 segundos.\n");
             break;
-        case '7': // Acionar buzzer com frequência
-            acionar_buzzer_com_frequencia(2, 3000); // Frequência de 2 Hz por 3 segundos
-            printf("Buzzer acionado com frequência de 2 Hz por 3 segundos.\n");
-            break;
-        case '8': // Habilitar modo de gravação
+        case '7': // Habilitar modo de gravação
             reset_usb_boot(0, 0);
             printf("Modo de gravação habilitado.\n");
             break;
@@ -124,7 +139,7 @@ int main() {
 
     while (true) {
         char comando;
-        printf("Digite um comando (1-8): ");
+        printf("Digite um comando (1-7): ");
         comando = getchar(); // Recebe comando via UART
         processar_comandos(comando); // Processa o comando recebido
     }
