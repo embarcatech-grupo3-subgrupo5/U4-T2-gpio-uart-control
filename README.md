@@ -44,6 +44,8 @@ Este projeto utiliza o microcontrolador RP2040 presente na placa Raspberry Pi Pi
    - Desenvolvimento da função para desligar todos os LEDs.
 
 3. **Emyle:**
+   - Configuração incial do projeto e base incial.
+   - Implementação da função de configuração incial do buzzer.
    - Implementação da função para acionar o buzzer por 3 segundos.
 
 4. **Gabriella:**
