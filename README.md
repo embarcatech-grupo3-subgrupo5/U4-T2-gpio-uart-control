@@ -25,7 +25,7 @@ Este projeto utiliza o microcontrolador RP2040 presente na placa Raspberry Pi Pi
 ## Configuração do Ambiente
 1. Clone este repositório:
    ```bash
-   git clone <[https://github.com/embarcatech-grupo3-subgrupo5/U4-T2-gpio-uart-control>
+   git clone <https://github.com/embarcatech-grupo3-subgrupo5/U4-T2-gpio-uart-control>
    ```
 2. Configure o Pico SDK no seu ambiente de desenvolvimento.
 3. Compile e carregue o código na Raspberry Pi Pico W.
