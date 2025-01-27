@@ -1,64 +1,70 @@
-# U4-T2-gpio-uart-control
-## Tarefa 2 -Controle de pinos GPIO com o emprego de uma porta UART. 
-## Descrição
-Este projeto implementa o controle de pinos GPIO de um microcontrolador RP2040 utilizando:
+# Controle de GPIO com LEDs e Buzzer - RP2040
 
-Interface UART para comandos.
+![Image](https://github.com/user-attachments/assets/d50b85b8-d484-4839-93d8-4390087bf2cf)
 
-O objetivo é realizar o acionamento de LEDs RGB e um buzzer via comunicação serial.
+## Descrição do Projeto
+Este projeto utiliza o microcontrolador RP2040 presente na placa Raspberry Pi Pico W para controlar três LEDs (verde, azul e vermelho) e um buzzer. A interação com o sistema ocorre por meio de comandos UART, permitindo ligar, desligar e executar diferentes padrões de controle dos LEDs e do buzzer. O projeto foi desenvolvido e testado em simulação no Wokwi e é compatível com hardware físico.
 
-Funcionalidades:
+## Funcionalidades
+- Controle individual dos LEDs (verde, azul e vermelho).
+- Ligação e desligamento simultâneo de todos os LEDs.
+- Acionamento do buzzer por diferentes durações e frequências.
+- Processamento de comandos UART para realizar as ações.
 
-Recepção de comandos via UART para controlar LEDs e buzzer.
+## Requisitos do Sistema
+1. **Hardware Necessário:**
+   - Placa de desenvolvimento Raspberry Pi Pico W.
+   - LEDs (verde, azul, vermelho).
+   - Buzzer passivo.
 
-Mapeamento de comandos para ações:
-
-LED_GREEN: Liga o LED verde.
-
-LED_BLUE: Liga o LED azul.
-
-LED_RED: Liga o LED vermelho.
-
-LED_WHITE: Liga todos os LEDs.
-
-LED_OFF: Desliga todos os LEDs.
-
-BUZZER_ON: Aciona o buzzer por 2 segundos.
-
-## Requisitos:
-
-Microcontrolador Raspberry Pi Pico W.
-
-Ferramenta educacional BitDogLab.
-
-Terminal serial (como PuTTY).
-
-## Execução:
-
-Configure os LEDs nos GPIOs 11, 12 e 13 e o buzzer no GPIO 21.
-
-Envie comandos via UART utilizando um terminal serial.
-
-Observe os LEDs e o buzzer respondendo aos comandos.
+2. **Software e Ferramentas:**
+   - Ambiente de desenvolvimento VS Code.
+   - Pico SDK configurado para o RP2040.
+   - Git para versionamento de código.
 
 ## Configuração do Ambiente
+1. Clone este repositório:
+   ```bash
+   git clone <url-do-repositorio>
+   ```
+2. Configure o Pico SDK no seu ambiente de desenvolvimento.
+3. Compile e carregue o código na Raspberry Pi Pico W.
+4. Utilize um monitor serial (como o Putty ou a interface do VS Code) para enviar comandos UART e interagir com o sistema.
 
-Instale o Pico SDK seguindo a documentação oficial.
+## Histórico de Contribuições
+### **Equipe e Funções:**
 
-Configure o simulador Wokwi para a Atividade 1.
+1. **Geison:**
+   - Desenvolvimento da função para ligar LEDs individualmente.
+   - Implementação do acionamento do buzzer passivo com frequência e duração customizadas.
+   - Colaboração na lógica de processamento de comandos UART.
 
-Configure o terminal serial (PuTTY) para a Atividade 2.
+2. **Julierme:**
+   - Configuração inicial dos GPIOs para LEDs e buzzer.
+   - Desenvolvimento da função para desligar todos os LEDs.
 
-## Contribuição
+3. **Emyle:**
+   - Implementação da função para acionar o buzzer por 3 segundos.
 
-Clone o repositório.
+4. **Gabriella:**
+   - Desenvolvimento da função para ligar todos os LEDs.
+   - Colaboração no processamento dos comandos UART e na integração geral do sistema.
 
-Crie um branch para suas alterações.
+## Instruções de Uso
+1. Inicie o monitor serial com uma conexão UART para a Raspberry Pi Pico W.
+2. Envie os seguintes comandos para controlar os LEDs e o buzzer:
+   - **1**: Liga o LED verde.
+   - **2**: Liga o LED azul.
+   - **3**: Liga o LED vermelho.
+   - **4**: Liga todos os LEDs.
+   - **5**: Desliga todos os LEDs.
+   - **6**: Aciona o buzzer por 2 segundos.
+   - **7**: Habilita o modo de gravação.
+3. Observe as ações no hardware ou na simulação.
 
-Faça commits claros e frequentes.
+## Vídeo Demonstrativo
+Confira o funcionamento do projeto no vídeo [aqui](https://drive.google.com/drive/folders/162CqwnEsd-BY1bFBg7GOnQ0X8qpqYdgB?usp=sharing).
 
-Envie um pull request para revisão.
+## Licença
+Este projeto é licenciado sob a MIT License.
 
-# Vídeo Demonstrativo
-
-Um vídeo mostrando o funcionamento do projeto está disponível no link: [Inserir Link Aqui]
