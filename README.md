@@ -65,7 +65,7 @@ Este projeto utiliza o microcontrolador RP2040 presente na placa Raspberry Pi Pi
 3. Observe as ações no hardware ou na simulação.
 
 ## Vídeo Demonstrativo
-Confira o funcionamento do projeto no vídeo [aqui](https://drive.google.com/drive/folders/162CqwnEsd-BY1bFBg7GOnQ0X8qpqYdgB?usp=sharing).
+Confira o funcionamento do projeto no vídeo [aqui](https://youtu.be/Q1Mv1HByov4).
 
 ## Licença
 Este projeto é licenciado sob a MIT License.
