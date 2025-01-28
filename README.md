@@ -1,6 +1,12 @@
 # Controle de GPIO com LEDs e Buzzer - RP2040
 
-![Image](https://github.com/user-attachments/assets/d50b85b8-d484-4839-93d8-4390087bf2cf)
+---
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/d50b85b8-d484-4839-93d8-4390087bf2cf" alt="Descrição da imagem">
+</div>
+
+---
 
 ## Descrição do Projeto
 Este projeto utiliza o microcontrolador RP2040 presente na placa Raspberry Pi Pico W para controlar três LEDs (verde, azul e vermelho) e um buzzer. A interação com o sistema ocorre por meio de comandos UART, permitindo ligar, desligar e executar diferentes padrões de controle dos LEDs e do buzzer. O projeto foi desenvolvido e testado em simulação no Wokwi e é compatível com hardware físico.
